@@ -9,6 +9,7 @@ class Json:
         self.obj = obj
 
     def __getitem__(self, i):
+        print(self.obj, i)
         return Json(self.obj[i])
 
     def __getattr__(self, name):

@@ -26,7 +26,7 @@ def task_build():
 def task_local_install():
     return {
         'actions': ['python setup.py install'],
-        'file_dep': ['dist'],
+        'file_dep': list(Path('dist').glob('*')),
     }
 
 
@@ -34,7 +34,7 @@ def task_upload_test():
     with open('VERSION') as f:
         version = f.read()
 
-    whl = f'dist/srtrename-{version}-py3-none-any.whl'
+    whl = f'dist/piqok-{version}-py3-none-any.whl'
     return {
         'actions': [
             f'python -m twine upload --repository testpypi {whl}'

@@ -14,7 +14,6 @@ setuptools.setup(
     author_email='gilad.kutiel@gmail.com',
     description='Get help with json',
     long_description=long_description,
-    long_description_content_type='text/markdown',
     url='https://github.com/piqok/piqok',
     packages=setuptools.find_packages(),
     classifiers=[

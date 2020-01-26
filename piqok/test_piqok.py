@@ -1,5 +1,5 @@
 from typing import List
-from piqok import Json
+from piqok.piqok import Json
 
 
 class Person(Json):
@@ -7,12 +7,13 @@ class Person(Json):
     age: int
 
 
-def test_person():
-    p = Person({
-        'name': 'Gilad',
-        'age': 40
-    })
+p = Person({
+    'name': 'Gilad',
+    'age': 40
+})
 
+
+def test_person():
     assert p.name == 'Gilad'
     assert p.age == 40
 
@@ -22,11 +23,26 @@ class Bag(Json):
     items: List[str]
 
 
-def test_bag():
-    b = Bag({
-        'size': 30.4,
-        'items': ['apple', 'map']
-    })
+b = Bag({
+    'size': 30.4,
+    'items': ['apple', 'map']
+})
 
+
+def test_bag():
     assert b.size == 30.4
     assert b.items[1] == 'map'
+
+
+class APersonWithABag(Json):
+    person: Person
+    bag: Bag
+
+
+def test_a_person_with_a_bag():
+    pwb = APersonWithABag({
+        'person': p,
+        'bag': b
+    })
+
+    assert pwb.bag.items[1] == 'map'

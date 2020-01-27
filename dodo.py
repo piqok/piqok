@@ -30,15 +30,16 @@ def task_local_install():
     }
 
 
-def task_upload_test():
+def task_upload():
     with open('VERSION') as f:
         version = f.read()
 
     whl = f'dist/piqok-{version}-py3-none-any.whl'
     return {
         'actions': [
-            f'python -m twine upload --repository testpypi {whl}'
+            f'python -m twine upload {whl}'
         ],
         'file_dep': [whl],
+        'uptodate': [True],
         'verbosity': 2,
     }

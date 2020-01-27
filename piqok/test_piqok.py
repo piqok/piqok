@@ -1,6 +1,6 @@
 import json
 from typing import List
-from piqok.piqok import Json
+from piqok import Json
 
 
 class Person(Json):

@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 pylint = "*"
+autopep8 = "*"
 
 [packages]
 doit = "*"
@@ -13,4 +14,4 @@ wheel = "*"
 pytest = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3.6"

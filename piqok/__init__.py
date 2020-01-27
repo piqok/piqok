@@ -1,1 +1,1 @@
-from piqok import *
+from piqok.piqok import Json

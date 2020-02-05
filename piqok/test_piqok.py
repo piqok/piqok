@@ -74,4 +74,4 @@ def test_person_setattr():
 def test_person_call():
     p = someone()
 
-    assert Person(p)() == p
+    assert Json.obj(Person(p)) == p

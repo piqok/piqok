@@ -30,5 +30,6 @@ class Json:
     def __str__(self):
         return json.dumps(self.obj, indent=2, sort_keys=True)
 
-    def __call__(self):
-        return self.__dict__['obj']
+    @staticmethod
+    def obj(j):
+        return j.__dict__['obj']

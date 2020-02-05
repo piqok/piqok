@@ -69,3 +69,9 @@ def test_person_setattr():
 
     assert p.friends[0].age == 41
     assert p.friends[0].name == 'Moshe'
+
+
+def test_person_call():
+    p = someone()
+
+    assert Person(p)() == p

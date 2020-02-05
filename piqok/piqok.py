@@ -19,7 +19,10 @@ class Json:
         return Json(self.__dict__['obj'][i])
 
     def __getattr__(self, name):
-        return Json(self.__dict__['obj'][name])
+        try:
+            return Json(self.__dict__['obj'][name])
+        except:
+            raise AttributeError()
 
     def __setattr__(self, name: str, value: Any) -> None:
         self.__dict__['obj'][name] = value

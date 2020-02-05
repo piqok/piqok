@@ -30,6 +30,17 @@ def someone():
         """)
 
 
+def test_person_hasattr():
+    p = Person(someone())
+    assert hasattr(p, 'name')
+    assert hasattr(p, 'age')
+    assert hasattr(p, 'pets')
+    assert hasattr(p, 'friends')
+
+    assert not hasattr(p, 'dada')
+    assert not hasattr(p, 'baba')
+
+
 def test_person_getattr():
     p = Person(someone())
 

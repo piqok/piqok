@@ -1,19 +1,34 @@
 import json
+from typing import Any
 
 
 class Json:
     def __new__(cls, val):
-        return val if type(val) not in [list, dict] else super().__new__(cls)
+        print('new', val, type(val))
+
+        if type(val) is dict:
+            return super().__new__(cls)
+
+        if type(val) is list:
+            return [Json(e) for e in val]
+
+        return val
 
     def __init__(self, obj) -> None:
-        self.obj = obj
+        print('init', obj, type(obj))
+        self.__dict__['obj'] = obj
 
     def __getitem__(self, i):
-        print(self.obj, i)
-        return Json(self.obj[i])
+        print('getitem', i)
+        return Json(self.__dict__['obj'][i])
 
     def __getattr__(self, name):
-        return Json(self.obj[name])
+        print('getattr', name)
+        return Json(self.__dict__['obj'][name])
+
+    def __setattr__(self, name: str, value: Any) -> None:
+        print('setattr', value)
+        self.__dict__['obj'][name] = value
 
     def __str__(self):
         return json.dumps(self.obj, indent=2, sort_keys=True)

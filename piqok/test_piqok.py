@@ -6,14 +6,16 @@ from piqok import Json
 class Person(Json):
     name: str
     age: float
+    pets: List[str]
     friends: List['Person']
 
 
-def test_a_person_with_a_bag():
-    p = Person(json.loads("""
+def someone():
+    return json.loads("""
         {
             "name": "Gilad",
             "age": 40,
+            "pets": ["Bisli", "Bamba"],
             "friends": [
                 {
                     "name": "Uri",
@@ -25,7 +27,34 @@ def test_a_person_with_a_bag():
                 }
             ]
         }
-        """))
+        """)
+
+
+def test_person_getattr():
+    p = Person(someone())
+
+    assert type(p.name) is str
+    assert type(p.age) is int
+    assert type(p.pets) is list
+
+    assert p.name == 'Gilad'
     assert p.age == 40
+    assert p.pets == ["Bisli", "Bamba"]
     assert p.friends[0].name == 'Uri'
     assert p.friends[1].age == 40
+
+
+def test_person_setattr():
+    Moshe = someone()
+    p = Person(Moshe)
+    p.age = 41
+    p.name = 'Moshe'
+    p.pets = ['Mishmish']
+    p.friends = [Moshe]
+
+    assert p.age == 41
+    assert p.name == 'Moshe'
+    assert p.pets == ['Mishmish']
+
+    assert p.friends[0].age == 41
+    assert p.friends[0].name == 'Moshe'

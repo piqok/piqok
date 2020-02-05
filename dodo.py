@@ -1,4 +1,5 @@
 from pathlib import Path
+import pytest
 
 
 def task_init():
@@ -8,9 +9,13 @@ def task_init():
 
 
 def task_test():
+    def test():
+        pytest.main(['-v'])
+
     return {
-        'actions': ['pytest'],
-        'file_dep': list(Path('src').glob('*.py')),
+        'actions': [test],
+        'file_dep': list(Path('piqok').glob('*.py')),
+        'verbosity': 2,
     }
 
 

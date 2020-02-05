@@ -4,14 +4,14 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-pylint = "*"
+mypy = "*"
 autopep8 = "*"
+doit = "*"
+pytest = "*"
+wheel = "*"
+twine = "*"
 
 [packages]
-doit = "*"
-twine = "*"
-wheel = "*"
-pytest = "*"
 
 [requires]
 python_version = "3.6"
